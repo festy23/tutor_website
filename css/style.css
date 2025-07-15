@@ -21,10 +21,53 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 90%; /* Adjusted for better mobile fit */
     margin: auto;
     overflow: hidden;
     padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%; /* Even wider on very small screens */
+        padding: 15px 0;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-content p,
+    #achievements li,
+    .pricing-list li {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 15px 25px;
+        font-size: 0.9rem;
+    }
+
+    .free-lesson-text {
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+
+    #contact p {
+        font-size: 0.9rem;
+    }
+
+    footer p {
+        font-size: 0.7rem;
+    }
 }
 
 h1, h2 {
