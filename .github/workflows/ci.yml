@@ -3,13 +3,11 @@ name: Deploy Vite Landing Page
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 permissions:
-  contents: read       # нужно для actions/checkout
-  pages: write         # нужно для upload-& deploy-pages
-  id-token: write      # нужно для OIDC при deploy-pages
+  contents: read       # required for actions/checkout
+  pages: write         # required for upload & deploy-pages
+  id-token: write      # required for OIDC with deploy-pages
 
 jobs:
   build:
