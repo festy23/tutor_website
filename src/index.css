@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-background text-text-primary;
+}
+
+@layer components {
+  .section-container {
+    @apply w-full py-12 sm:py-16 md:py-24;
+  }
+
+  .pixel-border {
+    @apply border-2 border-accent p-4 sm:p-6 md:p-8;
+    box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  }
+
+  .pixel-border-inset {
+    @apply border-2 border-accent p-4 sm:p-6 md:p-8;
+    box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,1);
+  }
+
+  .cta-button {
+    @apply font-pixel text-sm text-accent bg-transparent border-2 border-accent py-2 px-4;
+    box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
+    transition: all 0.2s ease-in-out;
+  }
+  .cta-button:hover {
+    @apply bg-yellow text-accent;
+    box-shadow: -3px -3px 0px 0px rgba(0,0,0,1);
+    transform: scale(1.1);
+  }
+  .cta-button:active {
+    transform: scale(0.9);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+  }
+}
