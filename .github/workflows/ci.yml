@@ -6,15 +6,16 @@ on:
   pull_request:
     branches: [ master ]
 
-# Разрешения, необходимые для deploy-pages@v4:
 permissions:
-  contents: read        # обязательно для checkout
-  pages: write          # запись в Pages
-  id-token: write       # OIDC-токен для проверки окружения
+  contents: read       # нужно для actions/checkout
+  pages: write         # нужно для upload-& deploy-pages
+  id-token: write      # нужно для OIDC при deploy-pages
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      artifact-name: dist-pages-artifact
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,9 +36,11 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
+        id: upload-pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+          name: dist-pages-artifact
 
   deploy:
     needs: build
@@ -46,9 +49,11 @@ jobs:
       pages: write
       id-token: write
     environment:
-      name: github-pages            # ⚠️ обязательно для deploy-pages@v4 :contentReference[oaicite:0]{index=0}
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deploy
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: dist-pages-artifact
