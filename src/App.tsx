@@ -6,7 +6,6 @@ import Achievements from './components/Achievements';
 import Services from './components/Services';
 import Reviews from './components/Reviews';
 import Pricing from './components/Pricing';
-import DinoGame from './components/DinoGame';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {

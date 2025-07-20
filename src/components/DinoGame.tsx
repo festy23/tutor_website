@@ -12,7 +12,7 @@ const DinoGame: React.FC = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let gameRunning = false;
+    // let gameRunning = false; // Removed unused variable
 
     // Game constants
     const dpr = window.devicePixelRatio || 1;
@@ -61,7 +61,7 @@ const DinoGame: React.FC = () => {
         }
       },
       draw() {
-        ctx.drawImage(
+        ctx!.drawImage(
           this.sprite,
           this.frame * 24, 0, 24, 24,
           playerX, this.y - this.height, this.width, this.height
@@ -93,8 +93,8 @@ const DinoGame: React.FC = () => {
       }
 
       draw() {
-        ctx.fillStyle = '#333';
-        ctx.fillRect(this.x, groundY - this.height, this.width, this.height);
+        ctx!.fillStyle = '#333';
+        ctx!.fillRect(this.x, groundY - this.height, this.width, this.height);
       }
     }
 
@@ -131,20 +131,20 @@ const DinoGame: React.FC = () => {
     }
 
     function drawText(text: string, x: number, y: number, size = 16, align: 'center' | 'left' = 'center') {
-      ctx.font = `${size}px 'Press Start 2P', sans-serif`;
-      ctx.fillStyle = '#333';
-      ctx.textAlign = align;
-      ctx.fillText(text, x, y);
+      ctx!.font = `${size}px 'Press Start 2P', sans-serif`;
+      ctx!.fillStyle = '#333';
+      ctx!.textAlign = align;
+      ctx!.fillText(text, x, y);
     }
 
     function clearCanvas() {
-      ctx.fillStyle = 'white';
-      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+      ctx!.fillStyle = 'white';
+      ctx!.fillRect(0, 0, canvasWidth, canvasHeight);
     }
 
     function drawGround() {
-      ctx.fillStyle = '#333';
-      ctx.fillRect(0, groundY, canvasWidth, 2);
+      ctx!.fillStyle = '#333';
+      ctx!.fillRect(0, groundY, canvasWidth, 2);
     }
 
     function resetGame() {
@@ -209,13 +209,13 @@ const DinoGame: React.FC = () => {
     document.addEventListener('keydown', handleKeyDown);
 
     player.sprite.onload = () => {
-        gameRunning = true;
+        // gameRunning = true; // Removed unused variable
         gameLoop();
     };
     player.sprite.src = dinoSprite;
 
     return () => {
-      gameRunning = false;
+      // gameRunning = false; // Removed unused variable
       cancelAnimationFrame(animationFrameId);
       canvas.removeEventListener('click', handleInput);
       document.removeEventListener('keydown', handleKeyDown);
