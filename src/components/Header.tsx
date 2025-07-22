@@ -1,120 +1,121 @@
 import React, { useState, useEffect } from 'react';
 
-interface HeaderProps {
-  showTitle: boolean;
-}
-
-const Header: React.FC<HeaderProps> = ({ showTitle }) => {
-  const [isSticky, setIsSticky] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
-  const [dynamicText, setDynamicText] = useState('');
-  const words = ['программированию', 'информатике', 'олимпиадам'];
+const Header: React.FC = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHeaderVisible, setHeaderVisible] = useState(false);
+  const [animatedWord, setAnimatedWord] = useState('');
 
   useEffect(() => {
+    const words = ['информатике', 'олимпиадам', 'программированию'];
     const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
+      setHeaderVisible(window.scrollY > 100);
     };
-
     window.addEventListener('scroll', handleScroll);
 
-    const sections = document.querySelectorAll('main > section[id]');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-50% 0px -50% 0px' }
-    );
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      sections.forEach((section) => {
-        observer.unobserve(section);
-      });
-    };
-  }, []);
-
-  useEffect(() => {
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     const type = () => {
       const currentWord = words[wordIndex];
-      if (isDeleting) {
-        setDynamicText(currentWord.substring(0, charIndex - 1));
-        charIndex--;
-      } else {
-        setDynamicText(currentWord.substring(0, charIndex + 1));
-        charIndex++;
-      }
+      setAnimatedWord(currentWord.substring(0, charIndex));
+
+      let typeSpeed = isDeleting ? 60 : 100;
 
       if (!isDeleting && charIndex === currentWord.length) {
-        setTimeout(() => (isDeleting = true), 3000);
+        isDeleting = true;
+        typeSpeed = 2500;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
+        typeSpeed = 500;
       }
+
+      if (!isDeleting) {
+        charIndex++;
+      } else {
+        charIndex--;
+      }
+      
+      timeoutId = setTimeout(type, typeSpeed);
     };
 
-    const typingInterval = setInterval(type, isDeleting ? 50 : 80);
+    timeoutId = setTimeout(type, 120);
 
-    return () => clearInterval(typingInterval);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const navLinks = [
     { href: '#hero', label: 'Главная' },
     { href: '#about', label: 'Обо мне' },
     { href: '#services', label: 'Услуги' },
-    { href: '#achievements', label: 'Достижения' },
+    { href: '#achievements', label: 'Почему я?' },
     { href: '#reviews', label: 'Отзывы' },
     { href: '#pricing', label: 'Цены' },
+    { href: 'https://t.me/knvlvivn', label: 'Написать мне', isExternal: true },
   ];
 
   return (
     <header
       id="sticky-header"
-      className={`fixed top-0 left-0 w-full bg-beige/60 backdrop-blur-xl py-4 z-50 border-b-2 border-accent transition-transform duration-300 ease-out ${
-        isSticky ? 'translate-y-0' : '-translate-y-full'
+      className={`sticky top-0 z-50 w-full bg-beige/95 backdrop-blur-sm border-b border-gray-200 transition-transform duration-300 ease-out ${
+        isHeaderVisible ? 'transform-none' : '-translate-y-full'
       }`}
+      role="banner"
     >
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
-          <div className="font-mono text-sm text-accent">Коновалов Иван</div>
-          <div
-            className={`header-title font-pixel text-accent text-lg transition-all duration-500 text-center ${
-              showTitle ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 -translate-y-5 blur-sm'
-            }`}
-          >
-            Репетитор по <span className="dynamic-text inline-block min-w-[320px] text-left">{dynamicText}</span>
+      <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Left Side: Name */}
+          <div className="flex-shrink-0">
+            <a href="#hero" className="font-mono text-sm sm:text-base font-bold text-accent">Коновалов Иван</a>
           </div>
-          <nav>
-            <ul className="flex items-center gap-4">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className={`font-mono text-sm text-accent transition-all duration-300 ${
-                      activeSection === link.href.substring(1) ? 'underline' : 'hover:underline'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+
+          {/* Center: Animated Search Bar */}
+          <div className="flex-1 justify-center px-2">
+            <div className="font-mono text-xs sm:text-sm text-gray-600 text-center">
+              Репетитор по <span className="text-accent">{animatedWord}</span>
+              <span className="animate-blink">|</span>
+            </div>
+          </div>
+
+          {/* Right Side: Menu */}
+          <div className="relative">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-accent focus:outline-none"
+              aria-controls="mobile-menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              <span className="sr-only">Открыть меню</span>
+              <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            </button>
+            
+            {/* Mobile Menu Dropdown */}
+            {mobileMenuOpen && (
+              <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-lg z-50 border border-gray-200">
+                <nav className="py-1">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target={link.isExternal ? '_blank' : undefined}
+                      rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-4 py-2 text-sm font-mono text-gray-700 hover:bg-gray-100"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>

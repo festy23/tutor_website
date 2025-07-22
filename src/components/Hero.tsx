@@ -2,92 +2,95 @@ import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-interface HeroProps {
-  setShouldShowTitle: (show: boolean) => void;
-}
-
-const Hero: React.FC<HeroProps> = ({ setShouldShowTitle }) => {
-  const [dynamicText, setDynamicText] = useState('');
-  const [isTitleVisible, setIsTitleVisible] = useState(true);
-  const dynamicTextRef = useRef<HTMLSpanElement>(null);
+const Hero: React.FC = () => {
+  const [animatedWord, setAnimatedWord] = useState('');
   const heroRef = useRef<HTMLDivElement>(null);
-  const words = ['программированию', 'информатике', 'олимпиадам'];
 
   useEffect(() => {
-    AOS.init();
-  }, []);
+    const words = ['информатике', 'олимпиадам', 'программированию'];
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShouldShowTitle(!entry.isIntersecting);
-        setIsTitleVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
-
-    return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
-    };
-  }, [setShouldShowTitle]);
-
-  useEffect(() => {
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     const type = () => {
       const currentWord = words[wordIndex];
-      if (isDeleting) {
-        setDynamicText(currentWord.substring(0, charIndex - 1));
-        charIndex--;
-      } else {
-        setDynamicText(currentWord.substring(0, charIndex + 1));
-        charIndex++;
-      }
+      setAnimatedWord(currentWord.substring(0, charIndex));
+
+      let typeSpeed = isDeleting ? 60 : 100;
 
       if (!isDeleting && charIndex === currentWord.length) {
-        setTimeout(() => (isDeleting = true), 3000);
+        isDeleting = true;
+        typeSpeed = 2500;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
+        typeSpeed = 500;
       }
+
+      if (!isDeleting) {
+        charIndex++;
+      } else {
+        charIndex--;
+      }
+      
+      timeoutId = setTimeout(type, typeSpeed);
     };
 
-    const typingInterval = setInterval(type, isDeleting ? 50 : 80);
+    timeoutId = setTimeout(type, 120);
 
-    return () => clearInterval(typingInterval);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   return (
-    <div ref={heroRef} className="min-h-[calc(100vh-200px)] flex flex-col justify-center items-center text-center">
-      <div className="container mx-auto px-4">
-        <h1
-          id="hero-title"
-          className={`font-pixel text-clamp-2xl mb-6 text-text-primary min-h-[86px] transition-opacity duration-500 ${
-            isTitleVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <span className="static-text">Репетитор по </span>
-          <span ref={dynamicTextRef} className="dynamic-text">{dynamicText}</span>
-        </h1>
-        <div className="flex flex-wrap justify-center items-center gap-5 mt-7">
-          <a href="#services" className="cta-button" data-aos="fade-up" data-aos-delay="1500">ЕГЭ</a>
-          <a href="#services" className="cta-button" data-aos="fade-up" data-aos-delay="1600">ОГЭ</a>
-          <a href="https://t.me/knvlvivn?text=Здравствуйте!%20Я%20заинтересован(а)%20в%20ваших%20услугах." target="_blank" rel="noopener noreferrer" className="cta-button" data-aos="fade-up" data-aos-delay="1700">Связаться со мной</a>
+    <section ref={heroRef} id="hero" className="min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden p-4">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-in">
+        <div className="min-h-[120px] sm:min-h-[140px] flex flex-col justify-center items-center mb-8">
+          <h1
+            className="font-pixel text-lg sm:text-2xl md:text-3xl font-bold text-gray-600"
+            data-aos="fade-down"
+          >
+            Репетитор по
+          </h1>
+          <h2 
+            className="font-pixel text-lg sm:text-2xl md:text-3xl font-bold text-accent"
+            data-aos="fade-down"
+          >
+            {animatedWord}
+            <span className="animate-blink">|</span>
+          </h2>
         </div>
-        <a href="#about" className="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center text-text-primary no-underline">
-          <span className="font-mono text-xs mb-2.5">Листать вниз</span>
-          <span className="w-0 h-0 border-l-8 border-r-8 border-t-10 border-transparent border-t-accent animate-bounce"></span>
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4" data-aos="fade-up" data-aos-delay="400">
+          <a 
+            href="#services" 
+            className="font-mono text-sm sm:text-base text-accent bg-yellow/80 px-4 py-2 rounded-full hover:bg-yellow transition-colors"
+          >
+            #ЕГЭ
+          </a>
+          <a 
+            href="#services"
+            className="font-mono text-sm sm:text-base text-accent bg-yellow/80 px-4 py-2 rounded-full hover:bg-yellow transition-colors"
+          >
+            #ОГЭ
+          </a>
+          <a 
+            href="#services"
+            className="font-mono text-sm sm:text-base text-accent bg-yellow/80 px-4 py-2 rounded-full hover:bg-yellow transition-colors"
+          >
+            #Python
+          </a>
+        </div>
+        <a href="#about" className="flex flex-col items-center text-gray-500 no-underline z-10 animate-bounce hover:text-accent mt-8" aria-label="Листать вниз">
+          <span className="font-mono text-xs sm:text-sm mb-2">Далее</span>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
         </a>
       </div>
-    </div>
+    </section>
   );
 };
 

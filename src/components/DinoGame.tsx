@@ -223,9 +223,9 @@ const DinoGame: React.FC = () => {
   }, []);
 
   return (
-    <div className="text-center">
-      <h2 className="font-pixel text-clamp-xl mb-12 uppercase inline-block relative text-accent">Проверь себя</h2>
-      <canvas ref={canvasRef} className="w-full h-64 bg-white border-2 border-accent"></canvas>
+    <div className="w-full max-w-md mx-auto px-2 sm:px-4 py-4 sm:py-8 bg-white/90 dark:bg-gray-900/90 rounded-xl shadow dark:shadow-2xl border border-accent dark:border-gray-700 flex flex-col items-center my-4">
+      <h2 className="font-pixel text-base mb-4 uppercase inline-block relative text-accent dark:text-gray-100 text-center w-full">Проверь себя</h2>
+      <canvas ref={canvasRef} className="w-full h-32 xs:h-40 sm:h-48 bg-white dark:bg-gray-900 border-2 border-accent dark:border-gray-700 rounded shadow-inner"></canvas>
     </div>
   );
 };

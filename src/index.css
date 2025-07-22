@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
 body {
-  @apply bg-background text-text-primary;
+  @apply bg-background text-text-primary dark:bg-black dark:text-white;
 }
 
 @layer components {
   .section-container {
-    @apply w-full py-12 sm:py-16 md:py-24;
+    @apply w-full py-6 sm:py-8 md:py-12 lg:py-16;
   }
 
   .pixel-border {

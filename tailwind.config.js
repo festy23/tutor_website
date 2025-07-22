@@ -14,7 +14,7 @@ export default {
         'yellow': '#f0e68c',
       },
       fontFamily: {
-        pixel: ['"Press Start 2P"', 'cursive'],
+        pixel: ['"Press Start 2P"', 'monospace'],
         mono: ['"Courier New"', 'Courier', 'monospace'],
       },
       animation: {
