@@ -1,51 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
-const pricingOptions = [
-  {
-    emoji: '💬',
-    title: 'Консультация',
-    price: 'от 1500₽',
-    period: '/ час',
-    features: [
-      'Помощь с выбором вуза',
-      'Карьерная консультация',
-      'Разбор сложных тем',
-    ],
-    link: 'https://t.me/knvlvivn?text=Здравствуйте!%20Я%20хочу%20записаться%20на%20консультацию.',
-    featured: false,
-  },
-  {
-    emoji: '📚',
-    title: 'Занятие',
-    price: 'от 2000₽',
-    period: '/ час',
-    features: [
-      'Подготовка к ЕГЭ/ОГЭ',
-      'Изучение программирования',
-      'Подготовка к олимпиадам',
-    ],
-    link: 'https://t.me/knvlvivn?text=Здравствуйте!%20Я%20хочу%20записаться%20на%20занятие.',
-    featured: true,
-  },
-];
+import { pricingOptions } from '../data/pricing';
+import { typeWriter } from '../utils/typewriter';
 
 const Pricing: React.FC = () => {
   const typewriterRef = useRef<HTMLHeadingElement>(null);
-
-  const typeWriter = (element: HTMLElement, text: string, speed = 120) => {
-    element.innerHTML = '';
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, speed);
-  };
 
   useEffect(() => {
     AOS.init({
@@ -117,7 +77,7 @@ const Pricing: React.FC = () => {
                 href={option.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-full block text-center font-mono text-base font-bold py-3 px-6 rounded-lg transition-colors ${option.featured ? 'bg-accent text-white hover:bg-black' : 'bg-yellow text-accent hover:bg-yellow/80'}`}
+                className={`w-full block text-center font-mono text-base font-bold py-3 px-6 rounded-lg transition-colors min-h-12 min-w-32 flex items-center justify-center ${option.featured ? 'bg-accent text-white hover:bg-black' : 'bg-yellow text-accent hover:bg-yellow/80'}`}
               >
                 Записаться
               </a>

@@ -1,55 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useTypingEffect } from '../hooks/useTypingEffect';
+
+const animatedWords = ['информатике', 'олимпиадам', 'программированию'];
 
 const Hero: React.FC = () => {
-  const [animatedWord, setAnimatedWord] = useState('');
   const heroRef = useRef<HTMLDivElement>(null);
+  const animatedWord = useTypingEffect({
+    words: animatedWords,
+  });
 
   useEffect(() => {
-    const words = ['информатике', 'олимпиадам', 'программированию'];
     AOS.init({
       duration: 1000,
       once: true,
     });
-
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let timeoutId: ReturnType<typeof setTimeout>;
-
-    const type = () => {
-      const currentWord = words[wordIndex];
-      setAnimatedWord(currentWord.substring(0, charIndex));
-
-      let typeSpeed = isDeleting ? 60 : 100;
-
-      if (!isDeleting && charIndex === currentWord.length) {
-        isDeleting = true;
-        typeSpeed = 2500;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        typeSpeed = 500;
-      }
-
-      if (!isDeleting) {
-        charIndex++;
-      } else {
-        charIndex--;
-      }
-      
-      timeoutId = setTimeout(type, typeSpeed);
-    };
-
-    timeoutId = setTimeout(type, 120);
-
-    return () => clearTimeout(timeoutId);
   }, []);
 
   return (
     <section ref={heroRef} id="hero" className="min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden p-4">
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-in">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10" data-aos="fade-in">
         <div className="min-h-[120px] sm:min-h-[140px] flex flex-col justify-center items-center mb-8">
           <h1
             className="font-pixel text-lg sm:text-2xl md:text-3xl font-bold text-gray-600"

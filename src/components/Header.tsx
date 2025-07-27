@@ -82,23 +82,55 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side: Menu */}
-          <div className="relative">
+          {/* Right Side: Desktop Menu (hidden on small screens) */}
+          <nav className="hidden md:flex space-x-6" aria-label="Main navigation">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target={link.isExternal ? '_blank' : undefined}
+                rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                className="font-mono text-sm text-gray-700 hover:text-accent transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Right Side: Mobile Menu (hidden on medium screens and up) */}
+          <div className="md:hidden relative">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-accent focus:outline-none"
+              className="relative w-12 h-12 rounded-full bg-yellow/80 flex items-center justify-center focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105"
               aria-controls="mobile-menu"
               aria-expanded={mobileMenuOpen}
             >
               <span className="sr-only">Открыть меню</span>
-              <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
+              <div className="flex flex-col justify-center items-center w-full h-full">
+                <span
+                  aria-hidden="true"
+                  className={`block absolute h-0.5 w-6 bg-accent transform transition duration-300 ease-in-out ${
+                    mobileMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'
+                  }`}
+                ></span>
+                <span
+                  aria-hidden="true"
+                  className={`block absolute h-0.5 w-6 bg-accent transform transition duration-300 ease-in-out ${
+                    mobileMenuOpen ? 'opacity-0' : ''
+                  }`}
+                ></span>
+                <span
+                  aria-hidden="true"
+                  className={`block absolute h-0.5 w-6 bg-accent transform transition duration-300 ease-in-out ${
+                    mobileMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'
+                  }`}
+                ></span>
+              </div>
             </button>
             
             {/* Mobile Menu Dropdown */}
             {mobileMenuOpen && (
-              <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-lg z-50 border border-gray-200">
+              <div id="mobile-menu" className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-lg z-50 border border-gray-200">
                 <nav className="py-1">
                   {navLinks.map((link) => (
                     <a

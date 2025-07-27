@@ -1,41 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-body {
-  @apply bg-background text-text-primary dark:bg-black dark:text-white;
+.fade-x-gradient {
+  position: relative;
 }
 
-@layer components {
-  .section-container {
-    @apply w-full py-6 sm:py-8 md:py-12 lg:py-16;
-  }
+.fade-x-gradient::before,
+.fade-x-gradient::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px; /* Adjust width of the fade */
+  pointer-events: none; /* Allows clicking through the gradient */
+  z-index: 10;
+}
 
-  .pixel-border {
-    @apply border-2 border-accent p-4 sm:p-6 md:p-8;
-    box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
-  }
+.fade-x-gradient::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
 
-  .pixel-border-inset {
-    @apply border-2 border-accent p-4 sm:p-6 md:p-8;
-    box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,1);
-  }
+.fade-x-gradient::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
 
-  .cta-button {
-    @apply font-pixel text-sm text-accent bg-transparent border-2 border-accent py-2 px-4;
-    box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
-    transition: all 0.2s ease-in-out;
-  }
-  .cta-button:hover {
-    @apply bg-yellow text-accent;
-    box-shadow: -3px -3px 0px 0px rgba(0,0,0,1);
-    transform: scale(1.1);
-  }
-  .cta-button:active {
-    transform: scale(0.9);
-    box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+/* On smaller screens, the fade is smaller */
+@media (max-width: 640px) {
+  .fade-x-gradient::before,
+  .fade-x-gradient::after {
+    width: 50px;
   }
 }

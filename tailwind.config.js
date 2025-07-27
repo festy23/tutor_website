@@ -19,7 +19,7 @@ export default {
       },
       animation: {
         bounce: 'bounce 2s infinite',
-        'marquee-scroll': 'marquee-scroll 40s linear infinite',
+        'marquee-scroll': 'marquee-scroll 20s linear infinite',
         pause: 'marquee-scroll 40s linear infinite paused',
         blink: 'blink 1s step-end infinite',
         'pixel-in': 'pixel-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',

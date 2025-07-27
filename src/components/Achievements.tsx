@@ -1,49 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
-const achievements = [
-  {
-    emoji: '🎓',
-    text: 'Обучил 20+ учеников со средним баллом 90+',
-  },
-  {
-    emoji: '💻',
-    text: 'Имею опыт работы в IT-индустрии',
-  },
-  {
-    emoji: '🏛️',
-    text: 'Учусь в НИУ ВШЭ на ФКН "Программная инженерия"',
-  },
-  {
-    emoji: '🚀',
-    text: 'Помогаю с карьерной консультацией в IT и выбором вуза',
-  },
-  {
-    emoji: '📈',
-    text: 'Отслеживаю прогресс КАЖДОГО ученика',
-  },
-  {
-    emoji: '💡',
-    text: 'Создаю индивидуальные планы обучения для каждого',
-  }
-];
+import { achievements } from '../data/achievements';
+import { typeWriter } from '../utils/typewriter';
 
 const Achievements: React.FC = () => {
   const typewriterRef = useRef<HTMLHeadingElement>(null);
-
-  const typeWriter = (element: HTMLElement, text: string, speed = 120) => {
-    element.innerHTML = '';
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, speed);
-  };
 
   useEffect(() => {
     AOS.init({
