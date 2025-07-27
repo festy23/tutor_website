@@ -12,28 +12,23 @@ const DinoGame: React.FC = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    // let gameRunning = false; // Removed unused variable
-
-    // Game constants
+    // Переменные состояния игры
+    let gameState = 'initial';
+    let score = 0;
+    let gameSpeed = 5;
+    let obstacles: Cactus[] = [];
+    let nextObstacleTime = 0;
+    // Константы игры
     const dpr = window.devicePixelRatio || 1;
     const canvasWidth = canvas.offsetWidth;
     const canvasHeight = canvas.offsetHeight;
     canvas.width = canvasWidth * dpr;
     canvas.height = canvasHeight * dpr;
     ctx.scale(dpr, dpr);
-
     const groundY = canvasHeight - 30;
     const playerX = 60;
     const maxScore = 100;
-
-    // Game state
-    let gameState = 'initial'; // initial, playing, gameOver, gameWon
-    let score = 0;
-    let gameSpeed = 5;
-    let obstacles: Cactus[] = [];
-    let nextObstacleTime = 0;
-
-    // Player
+    // Игрок
     const player = {
       y: groundY,
       width: 48,
@@ -56,7 +51,7 @@ const DinoGame: React.FC = () => {
         }
         this.frameCount++;
         if (gameState === 'playing' && this.frameCount > 8) {
-          this.frame = (this.frame + 1) % 2; // Use two frames for running
+          this.frame = (this.frame + 1) % 2;
           this.frameCount = 0;
         }
       },
@@ -209,13 +204,11 @@ const DinoGame: React.FC = () => {
     document.addEventListener('keydown', handleKeyDown);
 
     player.sprite.onload = () => {
-        // gameRunning = true; // Removed unused variable
         gameLoop();
     };
     player.sprite.src = dinoSprite;
 
     return () => {
-      // gameRunning = false; // Removed unused variable
       cancelAnimationFrame(animationFrameId);
       canvas.removeEventListener('click', handleInput);
       document.removeEventListener('keydown', handleKeyDown);

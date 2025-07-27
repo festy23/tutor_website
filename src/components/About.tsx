@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import photo from '../assets/photo.jpg';
+import photo from '../assets/profile_pic-1.svg';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -20,33 +20,19 @@ const About: React.FC = () => {
   };
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && typewriterRef.current) {
-            const text = typewriterRef.current.dataset.text || '';
-            typeWriter(typewriterRef.current, text);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-
+    AOS.init({ duration: 1000, once: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && typewriterRef.current) {
+          const text = typewriterRef.current.dataset.text || '';
+          typeWriter(typewriterRef.current, text);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
     const currentRef = typewriterRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
+    if (currentRef) observer.observe(currentRef);
+    return () => { if (currentRef) observer.unobserve(currentRef); };
   }, []);
 
   return (
