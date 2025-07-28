@@ -7,6 +7,7 @@ import Services from './components/Services';
 import Reviews from './components/Reviews';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
+import TelegramBubble from './components/TelegramBubble';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Pricing />
       </main>
       <Footer />
+      <TelegramBubble />
     </div>
   );
 };
