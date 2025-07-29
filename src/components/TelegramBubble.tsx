@@ -1,4 +1,5 @@
 import React from 'react';
+import telegramIcon from '../assets/telegram-svgrepo-com-3.svg';
 
 const TelegramBubble: React.FC = () => {
   return (
@@ -9,8 +10,7 @@ const TelegramBubble: React.FC = () => {
       className="fixed bottom-4 right-4 bg-black text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200 z-50"
       aria-label="Написать в Telegram"
     >
-      <span className="text-2xl">✈️</span>
-      <span className="font-pixel text-xs absolute bottom-1">tg</span>
+      <img src={telegramIcon} alt="Telegram" className="w-8 h-8" />
     </a>
   );
 };

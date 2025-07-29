@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
-import Achievements from './components/Achievements';
-import Services from './components/Services';
-import Reviews from './components/Reviews';
-import Pricing from './components/Pricing';
-import Footer from './components/Footer';
 import TelegramBubble from './components/TelegramBubble';
+
+const About = React.lazy(() => import('./components/About'));
+const Achievements = React.lazy(() => import('./components/Achievements'));
+const Services = React.lazy(() => import('./components/Services'));
+const Reviews = React.lazy(() => import('./components/Reviews'));
+const Pricing = React.lazy(() => import('./components/Pricing'));
+const Footer = React.lazy(() => import('./components/Footer'));
 
 const App: React.FC = () => {
   return (
-    <div className="bg-beige bg-grid min-h-screen font-mono">
+    <div className="bg-beige min-h-screen font-mono">
       <Header />
-      <main className="w-full max-w-screen-lg mx-auto scroll-smooth">
+      <main className="w-full max-w-screen-lg mx-auto scroll-smooth overflow-x-hidden">
         <Hero />
-        <About />
-        <Services />
-        <Achievements />
-        <Reviews />
-        <Pricing />
+        <Suspense fallback={<div>Loading...</div>}>
+          <About />
+          <Services />
+          <Achievements />
+          <Reviews />
+          <Pricing />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       <TelegramBubble />
     </div>
   );

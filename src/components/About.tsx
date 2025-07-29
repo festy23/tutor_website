@@ -10,8 +10,8 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" className="bg-white pt-20 pb-12 rounded-xl shadow-lg">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border-2 border-black rounded-xl p-4">
+    <section id="about" className="pt-20 pb-12">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border-2 border-black rounded-xl p-4 bg-white shadow-lg">
         {/* Text */}
         <div className="w-full md:w-7/12">
           <Title text="Обо мне" className="font-pixel text-3xl sm:text-4xl md:text-5xl text-accent mb-6" />
@@ -33,6 +33,9 @@ const About: React.FC = () => {
             alt="Коновалов Иван"
             className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto object-contain mx-auto"
             loading="lazy"
+            decoding="async"
+            width="512"
+            height="512"
           />
         </div>
       </div>
