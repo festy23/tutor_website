@@ -7,7 +7,6 @@ const navLinks = [
   { href: '#hero', label: 'Главная' },
   { href: '#about', label: 'Обо мне' },
   { href: '#services', label: 'Услуги' },
-  { href: '#achievements', label: 'Почему я?' },
   { href: '#reviews', label: 'Отзывы' },
   { href: '#pricing', label: 'Цены' },
   { href: 'https://t.me/knvlvivn', label: 'Написать мне', isExternal: true },
@@ -35,11 +34,9 @@ const Header: React.FC = () => {
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex items-center">
-            <a href="#hero" className="font-pixel text-xs font-bold text-gray-800 lowercase">konovalov ivan</a>
-            <span className="mx-2 text-gray-400">|</span>
-            <div className="font-mono text-xs text-gray-600">
-              Репетитор по <span className="text-accent">{animatedWord}</span>
-              <span className="animate-blink text-gray-400">|</span>
+            <a href="#hero" className="font-pixel text-xs font-bold text-gray-800 lowercase">konovalov ivan |</a>
+            <div className="font-mono text-xs text-gray-600 ml-2">
+              Репетитор по <span className="text-accent inline-block min-w-[120px]">{animatedWord}</span>
             </div>
           </div>
 

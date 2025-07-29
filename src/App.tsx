@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import TelegramBubble from './components/TelegramBubble';
 
 const About = React.lazy(() => import('./components/About'));
-const Achievements = React.lazy(() => import('./components/Achievements'));
 const Services = React.lazy(() => import('./components/Services'));
 const Reviews = React.lazy(() => import('./components/Reviews'));
 const Pricing = React.lazy(() => import('./components/Pricing'));
@@ -12,14 +11,13 @@ const Footer = React.lazy(() => import('./components/Footer'));
 
 const App: React.FC = () => {
   return (
-    <div className="bg-beige min-h-screen font-mono">
+    <div className="bg-beige bg-grid min-h-screen font-mono">
       <Header />
-      <main className="w-full max-w-screen-lg mx-auto scroll-smooth overflow-x-hidden">
+      <main className="w-full scroll-smooth overflow-x-hidden">
         <Hero />
         <Suspense fallback={<div>Loading...</div>}>
           <About />
           <Services />
-          <Achievements />
           <Reviews />
           <Pricing />
         </Suspense>

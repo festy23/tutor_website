@@ -8,6 +8,22 @@ export const useReviews = () => {
   const [isAutoplaying, setIsAutoplaying] = useState(true);
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
   const autoplayRef = useRef<number | null>(null);
+  const [autoplayInterval, setAutoplayInterval] = useState(3000);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setAutoplayInterval(1500);
+      } else {
+        setAutoplayInterval(3000);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const allTags = useMemo(() => [...new Set(allReviews.flatMap(r => r.tags || []))], []);
 
@@ -47,14 +63,14 @@ export const useReviews = () => {
     if (isAutoplaying && filteredReviews.length > 1) {
       autoplayRef.current = window.setInterval(() => {
         setPage(([p]) => [p + 1, 1]);
-      }, 3000);
+      }, autoplayInterval);
     } else if (autoplayRef.current) {
       clearInterval(autoplayRef.current);
     }
     return () => {
       if (autoplayRef.current) clearInterval(autoplayRef.current);
     };
-  }, [isAutoplaying, filteredReviews.length]);
+  }, [isAutoplaying, filteredReviews.length, autoplayInterval]);
 
   return {
     activeTag,

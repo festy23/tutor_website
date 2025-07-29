@@ -17,6 +17,22 @@ export const useAnimatedWords = ({
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [speed, setSpeed] = useState({ typing: typingSpeed, deleting: deletingSpeed });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSpeed({ typing: typingSpeed / 2, deleting: deletingSpeed / 2 });
+      } else {
+        setSpeed({ typing: typingSpeed, deleting: deletingSpeed });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [typingSpeed, deletingSpeed]);
 
   useEffect(() => {
     const type = () => {
@@ -37,9 +53,9 @@ export const useAnimatedWords = ({
       setCharIndex((prev) => (isDeleting ? prev - 1 : prev + 1));
     };
 
-    const typingTimeout = setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    const typingTimeout = setTimeout(type, isDeleting ? speed.deleting : speed.typing);
     return () => clearTimeout(typingTimeout);
-  }, [animatedWord, isDeleting, words, typingSpeed, deletingSpeed, delay, wordIndex, charIndex]);
+  }, [animatedWord, isDeleting, words, speed, delay, wordIndex, charIndex]);
 
   return animatedWord;
 };

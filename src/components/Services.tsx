@@ -1,10 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { services } from '../data/services';
+import { useServices } from '../hooks/useServices';
 import Title from './Title';
+import ServiceModal from './ServiceModal';
+import StudentWorkModal from './StudentWorkModal';
+import type { Service } from '../data/services';
 
 const Services: React.FC = () => {
+  const { services, selectedService, handleOpenModal, handleCloseModal } = useServices();
+  const [studentWorkModalOpen, setStudentWorkModalOpen] = useState(false);
+  const [selectedStudentWork, setSelectedStudentWork] = useState<Service | null>(null);
+
+  const handleOpenStudentWorkModal = (service: Service) => {
+    setSelectedStudentWork(service);
+    setStudentWorkModalOpen(true);
+  };
+
+  const handleCloseStudentWorkModal = () => {
+    setStudentWorkModalOpen(false);
+    setSelectedStudentWork(null);
+  };
+
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -40,18 +57,28 @@ const Services: React.FC = () => {
               <p className="font-mono text-sm sm:text-base text-gray-600 mb-6 flex-grow">
                 {service.description}
               </p>
-              <a
-                href={service.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto inline-block bg-accent text-white text-sm font-bold py-3 px-8 rounded-full hover:bg-black transition-all duration-300 ease-in-out transform hover:-translate-y-1"
-              >
-                Узнать больше
-              </a>
+              <div className="flex flex-col gap-2 w-full">
+                {service.studentWork && (
+                  <button
+                    onClick={() => handleOpenStudentWorkModal(service)}
+                    className="w-full inline-block bg-brand-red text-white text-sm font-bold py-3 px-8 rounded-full hover:bg-red-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+                  >
+                    Посмотреть работы учеников
+                  </button>
+                )}
+                <button
+                  onClick={() => handleOpenModal(service)}
+                  className="w-full inline-block bg-accent text-white text-sm font-bold py-3 px-8 rounded-full hover:bg-black transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+                >
+                  Узнать больше
+                </button>
+              </div>
             </div>
           ))}
         </div>
       </div>
+      <ServiceModal service={selectedService} onClose={handleCloseModal} />
+      {studentWorkModalOpen && <StudentWorkModal service={selectedStudentWork} onClose={handleCloseStudentWorkModal} />}
     </section>
   );
 };

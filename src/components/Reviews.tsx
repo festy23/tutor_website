@@ -37,7 +37,7 @@ const Reviews: React.FC = () => {
         <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12" data-aos="fade-up">
           <button
             onClick={() => handleTagChange(null)}
-            className={`font-mono text-sm sm:text-base px-4 py-2 rounded-full transition-colors ${
+            className={`font-mono text-xs sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-full transition-colors ${
               !activeTag ? 'bg-brand-red text-white' : 'bg-black text-white hover:bg-gray-800'
             }`}
           >
@@ -47,7 +47,7 @@ const Reviews: React.FC = () => {
             <button
               key={tag}
               onClick={() => handleTagChange(tag)}
-              className={`font-mono text-sm sm:text-base px-4 py-2 rounded-full transition-colors ${
+              className={`font-mono text-xs sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-full transition-colors ${
                 activeTag === tag ? 'bg-brand-red text-white' : 'bg-black text-white hover:bg-gray-800'
               }`}
             >
@@ -63,7 +63,7 @@ const Reviews: React.FC = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => paginate(-1)}
-                className="absolute -left-8 sm:-left-16 z-20 p-1 sm:p-2 bg-white/60 rounded-full shadow-lg hover:bg-white"
+                className="absolute left-0 sm:-left-16 z-20 p-1 sm:p-2 bg-white/60 rounded-full shadow-lg hover:bg-white"
                 aria-label="Previous review"
               >
                 <svg className="h-5 w-5 sm:h-6 sm:w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +74,7 @@ const Reviews: React.FC = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => paginate(1)}
-                className="absolute -right-8 sm:-right-16 z-20 p-1 sm:p-2 bg-white/60 rounded-full shadow-lg hover:bg-white"
+                className="absolute right-0 sm:-right-16 z-20 p-1 sm:p-2 bg-white/60 rounded-full shadow-lg hover:bg-white"
                 aria-label="Next review"
               >
                 <svg className="h-5 w-5 sm:h-6 sm:w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">

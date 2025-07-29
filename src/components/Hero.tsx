@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useAnimatedWords } from '../hooks/useAnimatedWords';
+import sparkleIcon from '../assets/silver_sparkle.png';
 
-const animatedWords = ['информатике', 'олимпиадам', 'программиро­ванию'];
+const animatedWords = ['информатике', 'олимпиадам', 'программи-\nрованию'];
 const tags = ['#ЕГЭ', '#ОГЭ', '#Python'];
 
 const Hero: React.FC = () => {
@@ -23,20 +24,33 @@ const Hero: React.FC = () => {
     <section ref={heroRef} id="hero" className="min-h-screen flex flex-col items-center text-center relative overflow-hidden p-4 pt-32 sm:pt-40">
       <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10 flex flex-col items-center" data-aos="fade-in">
         <div className="min-h-[100px] sm:min-h-[140px] flex flex-col justify-center items-center mb-8">
-          <h1
-            className="font-pixel text-2xl sm:text-4xl md:text-5xl font-bold text-gray-600"
-            data-aos="fade-down"
-          >
-            Репетитор по <span className="text-accent">{animatedWord}</span>
-            <span className="animate-blink text-gray-400">|</span>
-          </h1>
+          <div className="flex items-center justify-center gap-4">
+            <div className="flex flex-col items-center">
+              <div className="flex items-center">
+                <img src={sparkleIcon} alt="Sparkle" className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32" />
+                <h1
+                  className="font-pixel text-2xl sm:text-3xl md:text-4xl font-bold text-gray-600 lowercase"
+                  data-aos="fade-down"
+                >
+                  репетитор по
+                </h1>
+              </div>
+              <h2
+                className="font-pixel text-2xl sm:text-4xl md:text-5xl font-bold text-accent whitespace-pre-line"
+                data-aos="fade-up"
+              >
+                {animatedWord}
+              </h2>
+            </div>
+          </div>
         </div>
+
         <div className="flex flex-wrap justify-center gap-3 sm:gap-4" data-aos="fade-up" data-aos-delay="400">
           {tags.map((tag) => (
-            <a 
+            <a
               key={tag}
-              href="#services" 
-              className={`font-mono text-sm sm:text-base px-6 py-3 rounded-full transition-colors duration-300 relative overflow-hidden ${
+              href="#services"
+              className={`font-mono text-xs sm:text-base px-4 py-2 sm:px-6 sm:py-3 rounded-full transition-colors duration-300 relative overflow-hidden ${
                 tag === '#Python' ? 'bg-brand-red text-white' : 'bg-black text-white hover:bg-gray-800'
               }`}
             >

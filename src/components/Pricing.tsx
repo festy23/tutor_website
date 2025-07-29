@@ -4,6 +4,13 @@ import 'aos/dist/aos.css';
 import { pricingOptions } from '../data/pricing';
 import Title from './Title';
 
+const marqueeTopTexts = [
+  "первое занятие бесплатно!",
+];
+const marqueeBottomTexts = [
+  "с началом учебного года будет повышение цен",
+];
+
 const Pricing: React.FC = () => {
   useEffect(() => {
     AOS.init({
@@ -14,25 +21,22 @@ const Pricing: React.FC = () => {
 
   return (
     <section id="pricing" className="py-20 sm:py-32">
+      <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
+        <Title text="Цены" className="font-pixel text-3xl sm:text-4xl md:text-5xl text-accent" />
+      </div>
+
+      <div className="relative w-full overflow-hidden bg-gray-800/5 py-3 mb-12 sm:mb-16 border-y-2 border-dashed border-gray-300">
+        <div className="flex animate-marquee-mobile md:animate-marquee whitespace-nowrap">
+          {[...marqueeTopTexts, ...marqueeTopTexts, ...marqueeTopTexts, ...marqueeTopTexts, ...marqueeTopTexts, ...marqueeTopTexts].map((text, i) => (
+            <div key={i} className="flex items-center">
+              <span className="text-accent mx-4 font-pixel">*</span>
+              <p className="font-pixel text-sm sm:text-base text-gray-600">{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <Title text="Цены" className="font-pixel text-3xl sm:text-4xl md:text-5xl text-accent" />
-        </div>
-
-        <div className="relative w-full overflow-hidden bg-gray-800/5 py-3 mb-12 sm:mb-16 border-y-2 border-dashed border-gray-300">
-          <div className="flex animate-marquee-mobile md:animate-marquee whitespace-nowrap">
-            {[...Array(4)].map((_, i) => (
-              <p key={i} className="font-pixel text-sm sm:text-base text-gray-600 mx-8">
-                первое занятие бесплатно!
-                <span className="text-accent mx-2">*</span>
-                проведем тест!
-                <span className="text-accent mx-2">*</span>
-                узнаем ваш уровень знаний!
-              </p>
-            ))}
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {pricingOptions.map((option, index) => (
             <div
@@ -46,7 +50,7 @@ const Pricing: React.FC = () => {
               {option.featured && (
                 <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
                   <span className="px-4 py-1 text-xs sm:text-sm font-semibold text-white bg-accent rounded-full">
-                    Best Value
+                    Лучший выбор!
                   </span>
                 </div>
               )}
@@ -84,6 +88,17 @@ const Pricing: React.FC = () => {
               >
                 Записаться
               </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="relative w-full overflow-hidden bg-gray-800/5 py-3 mt-12 sm:mt-16 border-y-2 border-dashed border-gray-300">
+        <div className="flex animate-marquee-mobile md:animate-marquee whitespace-nowrap">
+          {[...marqueeBottomTexts, ...marqueeBottomTexts, ...marqueeBottomTexts, ...marqueeBottomTexts, ...marqueeBottomTexts, ...marqueeBottomTexts].map((text, i) => (
+            <div key={i} className="flex items-center">
+              <span className="text-accent mx-4 font-pixel">*</span>
+              <p className="font-pixel text-sm sm:text-base text-gray-600">{text}</p>
             </div>
           ))}
         </div>

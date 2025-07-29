@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
   const email = 'ivankon1@icloud.com';
 
   return (
-    <footer id="contact" className="bg-white text-text-primary py-16 sm:py-24">
+    <footer id="contact" className="bg-transparent text-text-primary py-16 sm:py-24">
       <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div data-aos="fade-up">
           <Title text="Связаться со мной" className="font-pixel text-3xl sm:text-4xl text-accent mb-8" />
