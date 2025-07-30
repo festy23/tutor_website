@@ -31,7 +31,7 @@ const Reviews: React.FC = () => {
     <section id="reviews" className="relative py-16 sm:py-24">
       <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="text-center mb-12">
-          <Title text="Отзывы" className="font-pixel text-3xl sm:text-4xl md:text-5xl text-accent" />
+          <Title text="Отзывы" className="font-heading text-3xl sm:text-4xl md:text-5xl text-accent" />
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12" data-aos="fade-up">
@@ -41,7 +41,7 @@ const Reviews: React.FC = () => {
               !activeTag ? 'bg-brand-red text-white' : 'bg-black text-white hover:bg-gray-800'
             }`}
           >
-            Все
+            все
           </button>
           {allTags.map((tag) => (
             <button
@@ -51,7 +51,7 @@ const Reviews: React.FC = () => {
                 activeTag === tag ? 'bg-brand-red text-white' : 'bg-black text-white hover:bg-gray-800'
               }`}
             >
-              #{tag}
+              #{tag.toLowerCase()}
             </button>
           ))}
         </div>

@@ -158,7 +158,7 @@ const DinoGame: React.FC = () => {
 
       if (gameState === 'initial') {
         player.draw();
-        drawText('Начать игру', canvasWidth / 2, canvasHeight / 2 - 20);
+        drawText('начать игру', canvasWidth / 2, canvasHeight / 2 - 20);
       } else if (gameState === 'playing') {
         player.update();
         player.draw();

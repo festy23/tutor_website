@@ -5,6 +5,8 @@ import 'aos/dist/aos.css';
 import Title from './Title';
 import { achievements } from '../data/achievements';
 
+import gridBackground from '../assets/grid-background.svg';
+
 const About: React.FC = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -17,8 +19,10 @@ const About: React.FC = () => {
           {/* Image Column */}
           <div className="w-full sm:w-10/12 md:w-8/12 lg:w-5/12" data-aos="fade-right">
             <div className="relative">
-              {/* To change the color of the rectangle, modify the background color class below (e.g., bg-blue-500, bg-brand-red) */}
-              <div className="absolute -top-4 -left-4 w-full h-full bg-paper rounded-lg transform -rotate-3 transition-transform duration-300 group-hover:rotate-0"></div>
+              <div 
+                className="absolute -top-4 -left-4 w-full h-full rounded-lg transform -rotate-3 transition-transform duration-300 group-hover:rotate-0"
+                style={{ backgroundImage: `url(${gridBackground})` }}
+              ></div>
               <img
                 src={photo}
                 alt="Коновалов Иван"
@@ -33,16 +37,16 @@ const About: React.FC = () => {
 
           {/* Text and Tags Column */}
           <div className="w-full lg:w-7/12" data-aos="fade-left" data-aos-delay="200">
-            <Title text="Обо мне" className="font-pixel text-3xl sm:text-4xl md:text-5xl text-accent mb-8 text-center lg:text-left" />
+            <Title text="Обо мне" className="font-heading text-3xl sm:text-4xl md:text-5xl text-accent mb-8 text-center lg:text-left" />
             
             {/* Bubble with black border */}
             <div className="relative bg-white p-6 sm:p-8 rounded-lg shadow-xl border-2 border-black">
-              <p className="font-mono text-base sm:text-lg text-gray-800 leading-relaxed">
+              <p className="font-mono text-sm sm:text-base text-gray-800 leading-relaxed">
                 Привет! Меня зовут Коновалов Иван, и я ваш проводник в мир программирования.
                 Моя цель — не просто научить вас писать код, а показать, насколько увлекательным
                 и творческим может быть этот процесс.
               </p>
-              <p className="font-mono text-base sm:text-lg text-gray-800 leading-relaxed mt-4">
+              <p className="font-mono text-sm sm:text-base text-gray-800 leading-relaxed mt-4">
                 Я помогаю школьникам успешно сдавать ЕГЭ и ОГЭ по информатике, а также готовлю
                 к олимпиадам. Вместе мы превратим сложные задачи в интересные проекты и достигнем ваших целей.
               </p>

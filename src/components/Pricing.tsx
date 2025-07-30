@@ -22,15 +22,15 @@ const Pricing: React.FC = () => {
   return (
     <section id="pricing" className="py-20 sm:py-32">
       <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
-        <Title text="Цены" className="font-pixel text-3xl sm:text-4xl md:text-5xl text-accent" />
+        <Title text="Цены" className="font-heading text-3xl sm:text-4xl md:text-5xl text-accent" />
       </div>
 
       <div className="relative w-full overflow-hidden bg-gray-800/5 py-3 mb-12 sm:mb-16 border-y-2 border-dashed border-gray-300">
         <div className="flex animate-marquee-mobile md:animate-marquee whitespace-nowrap">
-          {[...marqueeTopTexts, ...marqueeTopTexts, ...marqueeTopTexts, ...marqueeTopTexts, ...marqueeTopTexts, ...marqueeTopTexts].map((text, i) => (
+          {Array(50).fill(marqueeTopTexts).flat().map((text, i) => (
             <div key={i} className="flex items-center">
               <span className="text-accent mx-4 font-pixel">*</span>
-              <p className="font-pixel text-sm sm:text-base text-gray-600">{text}</p>
+              <p className="font-mono text-sm sm:text-base text-gray-600">{text}</p>
             </div>
           ))}
         </div>
@@ -49,13 +49,13 @@ const Pricing: React.FC = () => {
             >
               {option.featured && (
                 <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                  <span className="px-4 py-1 text-xs sm:text-sm font-semibold text-white bg-accent rounded-full">
+                  <span className="px-4 py-1 text-xs sm:text-sm font-semibold text-white bg-accent rounded-full font-mono">
                     Лучший выбор!
                   </span>
                 </div>
               )}
               <div className="text-center">
-                <img src={option.emoji} alt={option.title} className="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-6" />
+                <img src={option.emoji} alt={option.title} className="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-6" loading="lazy" width="96" height="96" />
                 <h3 className="font-mono text-xl sm:text-2xl font-bold my-4 text-accent">{option.title}</h3>
                 <div className="mb-6">
                   <span className="text-3xl sm:text-4xl font-bold text-gray-900">{option.price}</span>
@@ -95,10 +95,10 @@ const Pricing: React.FC = () => {
 
       <div className="relative w-full overflow-hidden bg-gray-800/5 py-3 mt-12 sm:mt-16 border-y-2 border-dashed border-gray-300">
         <div className="flex animate-marquee-mobile md:animate-marquee whitespace-nowrap">
-          {[...marqueeBottomTexts, ...marqueeBottomTexts, ...marqueeBottomTexts, ...marqueeBottomTexts, ...marqueeBottomTexts, ...marqueeBottomTexts].map((text, i) => (
+          {Array(50).fill(marqueeBottomTexts).flat().map((text, i) => (
             <div key={i} className="flex items-center">
               <span className="text-accent mx-4 font-pixel">*</span>
-              <p className="font-pixel text-sm sm:text-base text-gray-600">{text}</p>
+              <p className="font-mono text-sm sm:text-base text-gray-600">{text}</p>
             </div>
           ))}
         </div>

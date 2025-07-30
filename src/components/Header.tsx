@@ -12,7 +12,7 @@ const navLinks = [
   { href: 'https://t.me/knvlvivn', label: 'Написать мне', isExternal: true },
 ];
 
-const animatedWords = ['информатике', 'олимпиадам', 'программиро­ванию'];
+const animatedWords = ['информатика', 'олимпиады', 'программирование'];
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,11 +36,25 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <a href="#hero" className="font-pixel text-xs font-bold text-gray-800 lowercase">konovalov ivan |</a>
             <div className="font-mono text-xs text-gray-600 ml-2">
-              Репетитор по <span className="text-accent inline-block min-w-[120px]">{animatedWord}</span>
+              репетитор <span className="font-heading text-accent inline-block min-w-[120px]">{animatedWord}</span>
             </div>
           </div>
 
-          <div className="relative">
+          <nav className="hidden md:flex space-x-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target={link.isExternal ? '_blank' : undefined}
+                rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                className="font-mono text-sm text-gray-700 hover:text-accent transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="relative md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="relative w-10 h-10 flex items-center justify-center focus:outline-none"

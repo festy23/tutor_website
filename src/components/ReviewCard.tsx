@@ -53,7 +53,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, onOpenModal }) => {
       <div className="flex flex-col bg-white rounded-xl shadow-lg p-6 sm:p-8 border-2 border-gray-800">
         <p className="font-mono text-sm sm:text-base text-gray-700 mb-4">{highlightKeywords(truncateToTwoSentences(review.text))}</p>
         <div className="text-center mt-auto">
-          <button onClick={() => onOpenModal(review)} className="font-mono px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-accent/90 transition-all duration-200 transform hover:scale-105">Читать</button>
+          <button onClick={() => onOpenModal(review)} className="font-mono px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-accent/90 transition-all duration-200 transform hover:scale-105">читать</button>
         </div>
         <footer className="font-mono text-sm font-bold text-accent text-right mt-2 pt-2 border-t">
           <p>{review.author.split(',')[0].trim()}</p>

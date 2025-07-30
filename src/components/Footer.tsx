@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     <footer id="contact" className="bg-transparent text-text-primary py-16 sm:py-24">
       <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div data-aos="fade-up">
-          <Title text="Связаться со мной" className="font-pixel text-3xl sm:text-4xl text-accent mb-8" />
+          <Title text="Связаться со мной" className="font-heading text-3xl sm:text-4xl text-accent mb-8" />
           <p className="font-mono text-base sm:text-lg text-gray-700 max-w-2xl mx-auto mb-10">
             Готовы начать подготовку? Есть вопросы? Напишите мне, и я отвечу в ближайшее время.
           </p>
@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
             href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-accent text-white font-pixel text-sm sm:text-base py-4 px-8 rounded-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-xl mb-12"
+            className="inline-block bg-accent text-white font-mono text-sm sm:text-base py-4 px-8 rounded-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-xl mb-12"
           >
             Написать в Telegram
           </a>

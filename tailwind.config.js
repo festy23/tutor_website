@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        'heading': ['"Golos Text"', 'sans-serif'],
         'pixel': ['"Press Start 2P"', 'cursive'],
-        'mono': ['"Courier New"', 'monospace'],
+        'heading': ['Raleway', 'sans-serif'],
+        'mono': ['Montserrat', 'sans-serif'],
       },
       colors: {
         'beige': '#f5f5dc',
