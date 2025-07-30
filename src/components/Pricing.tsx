@@ -55,7 +55,7 @@ const Pricing: React.FC = () => {
                 </div>
               )}
               <div className="text-center">
-                <span className="text-4xl sm:text-5xl mb-4">{option.emoji}</span>
+                <img src={option.emoji} alt={option.title} className="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-6" />
                 <h3 className="font-mono text-xl sm:text-2xl font-bold my-4 text-accent">{option.title}</h3>
                 <div className="mb-6">
                   <span className="text-3xl sm:text-4xl font-bold text-gray-900">{option.price}</span>

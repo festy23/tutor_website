@@ -1,6 +1,9 @@
+import silverBooks from '../assets/silver_books.png';
+import silverTalk from '../assets/silver_tallk.png';
+
 export const pricingOptions = [
   {
-    emoji: '📚',
+    emoji: silverBooks,
     title: 'Индивидуальное занятие',
     price: '2000 р.',
     period: '/ 1 час',
@@ -13,7 +16,7 @@ export const pricingOptions = [
     featured: true,
   },
   {
-    emoji: '💬',
+    emoji: silverTalk,
     title: 'Консультация',
     price: '1200 р.',
     period: '/ 1 час',

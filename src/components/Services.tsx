@@ -48,6 +48,14 @@ const Services: React.FC = () => {
                   Набор 2025
                 </div>
               )}
+              {service.studentWork && (
+                <div 
+                  onClick={() => handleOpenStudentWorkModal(service)}
+                  className="absolute -top-4 -left-4 bg-accent text-white font-pixel text-xs py-1 px-3 rounded-full transform -rotate-12 shadow-lg cursor-pointer hover:scale-110 transition-transform duration-200"
+                >
+                  Работы учеников
+                </div>
+              )}
               <div className="flex-shrink-0 mb-6">
                 <img src={service.icon} alt={service.title} className="w-24 h-24 sm:w-28 sm:h-28 object-contain" />
               </div>
@@ -57,15 +65,7 @@ const Services: React.FC = () => {
               <p className="font-mono text-sm sm:text-base text-gray-600 mb-6 flex-grow">
                 {service.description}
               </p>
-              <div className="flex flex-col gap-2 w-full">
-                {service.studentWork && (
-                  <button
-                    onClick={() => handleOpenStudentWorkModal(service)}
-                    className="w-full inline-block bg-brand-red text-white text-sm font-bold py-3 px-8 rounded-full hover:bg-red-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1"
-                  >
-                    Посмотреть работы учеников
-                  </button>
-                )}
+              <div className="flex flex-col gap-2 w-full mt-auto">
                 <button
                   onClick={() => handleOpenModal(service)}
                   className="w-full inline-block bg-accent text-white text-sm font-bold py-3 px-8 rounded-full hover:bg-black transition-all duration-300 ease-in-out transform hover:-translate-y-1"
