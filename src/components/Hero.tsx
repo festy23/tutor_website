@@ -4,7 +4,8 @@ import 'aos/dist/aos.css';
 import { useAnimatedWords } from '../hooks/useAnimatedWords';
 import sparkleIcon from '../assets/silver_sparkle.webp';
 
-const animatedWords = ['информатике', 'олимпиадам', 'программированию'];
+const animatedWords = ['информатике', 'олимпиадам', `программи-
+рованию`];
 const tags = ['#ЕГЭ', '#ОГЭ', '#Python'];
 
 const Hero: React.FC = () => {
@@ -22,21 +23,18 @@ const Hero: React.FC = () => {
   return (
     <section id="hero" className="flex flex-col items-center justify-center text-center relative overflow-hidden px-4 pt-24 sm:pt-32 pb-16 sm:pb-20">
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-10 flex flex-col items-center" data-aos="fade-in">
-        <div className="flex flex-col justify-center items-center mb-8 sm:mb-10">
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <img src={sparkleIcon} alt="Sparkle" className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 transform transition-transform duration-300 hover:scale-110" />
-              <h1
-                className="font-mono text-lg sm:text-xl md:text-2xl font-bold text-gray-600 lowercase"
-                data-aos="fade-down"
-              >
-                репетитор по
-              </h1>
-            </div>
-            <h2
-              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-accent whitespace-pre-line flex items-center justify-center h-[60px] sm:h-[80px] md:h-[100px] lg:h-[120px]"
-              data-aos="fade-up"
-            >
+        <div className="flex justify-center items-center gap-4 sm:gap-6 mb-8 sm:mb-10">
+          <img
+            src={sparkleIcon}
+            alt="Sparkle"
+            className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
+            data-aos="fade-right"
+          />
+          <div className="flex flex-col" data-aos="fade-left">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent whitespace-pre-wrap">
+              репетитор по
+            </h1>
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent h-[96px] sm:h-[120px] md:h-[160px] flex items-center whitespace-pre-wrap">
               {animatedWord}
             </h2>
           </div>

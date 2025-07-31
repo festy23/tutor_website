@@ -57,7 +57,7 @@ const Header: React.FC = () => {
           <div className="relative md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="relative w-10 h-10 flex items-center justify-center focus:outline-none -mr-2"
+              className="relative w-12 h-12 flex items-center justify-center focus:outline-none -mr-2"
               aria-controls="mobile-menu"
               aria-expanded={mobileMenuOpen}
             >

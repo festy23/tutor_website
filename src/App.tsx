@@ -11,7 +11,7 @@ const Footer = React.lazy(() => import('./components/Footer'));
 
 const App: React.FC = () => {
   return (
-    <div className="bg-beige bg-grid min-h-screen font-mono">
+    <div className="bg-beige bg-grid min-h-screen font-sans">
       <Header />
       <main className="w-full scroll-smooth overflow-x-hidden">
         <Hero />

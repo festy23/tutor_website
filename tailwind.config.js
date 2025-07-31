@@ -8,9 +8,24 @@ export default {
     extend: {
       fontFamily: {
         'heading': ['"Golos Text"', 'sans-serif'],
-        'pixel': ['"Press Start 2P"', 'cursive'],
-        'heading': ['Raleway', 'sans-serif'],
-        'mono': ['Montserrat', 'sans-serif'],
+        'pixel': ['"VT323"', 'monospace'],
+        'sans': [
+          '"Avenir Next"',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          '"Noto Sans"',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
+        'mono': ['"Space Mono"', 'monospace'],
       },
       colors: {
         'beige': '#f5f5dc',

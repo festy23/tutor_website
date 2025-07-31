@@ -22,7 +22,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, isOpen, onClose }) =>
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="absolute top-full right-0 mt-3 w-64 bg-white/90 backdrop-blur-lg rounded-xl shadow-2xl z-50 border border-gray-200/70"
+          className="absolute top-full right-0 mt-3 w-full max-w-xs sm:max-w-sm md:w-64 bg-white/90 backdrop-blur-lg rounded-xl shadow-2xl z-50 border border-gray-200/70"
           id="mobile-menu"
         >
           <nav className="py-2" role="menu">
@@ -37,6 +37,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, isOpen, onClose }) =>
                   index !== navLinks.length - 1 ? 'border-b border-gray-200/80' : ''
                 }`}
                 role="menuitem"
+                aria-label={link.label}
               >
                 {link.label}
               </a>
