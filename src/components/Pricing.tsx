@@ -37,36 +37,36 @@ const Pricing: React.FC = () => {
       </div>
 
       <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {pricingOptions.map((option, index) => (
             <div
               key={index}
-              className={`relative bg-white rounded-xl shadow-lg p-6 sm:p-8 transition-transform duration-300 transform hover:scale-105 ${
-                option.featured ? 'border-2 border-brand-red' : 'border border-gray-200'
+              className={`relative bg-white rounded-2xl shadow-lg p-6 sm:p-8 transition-transform duration-300 transform hover:scale-105 ${
+                option.featured ? 'border-2 border-brand-red' : 'border-2 border-black'
               }`}
               data-aos="fade-up"
               data-aos-delay={`${index * 100}`}
             >
               {option.featured && (
                 <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                  <span className="px-4 py-1 text-xs sm:text-sm font-semibold text-white bg-accent rounded-full font-mono">
+                  <span className="px-4 py-1.5 text-sm font-semibold text-white bg-accent rounded-full font-mono shadow-lg">
                     Лучший выбор!
                   </span>
                 </div>
               )}
               <div className="text-center">
-                <img src={option.emoji} alt={option.title} className="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-6" loading="lazy" width="96" height="96" />
+                <img src={option.emoji} alt={option.title} className="w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-6" loading="lazy" width="128" height="128" />
                 <h3 className="font-mono text-xl sm:text-2xl font-bold my-4 text-accent">{option.title}</h3>
-                <div className="mb-6">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{option.price}</span>
-                  <span className="text-base sm:text-lg font-medium text-gray-500">{option.period}</span>
+                <div className="mb-8">
+                  <span className="text-4xl sm:text-5xl font-bold text-gray-900">{option.price}</span>
+                  <span className="text-lg font-medium text-gray-500">{option.period}</span>
                 </div>
               </div>
-              <ul className="space-y-3 sm:space-y-4 mb-8">
+              <ul className="space-y-4 mb-10">
                 {option.features.map((feature, i) => (
-                  <li key={i} className="flex items-center">
+                  <li key={i} className="flex items-start">
                     <svg
-                      className="w-5 h-5 sm:w-6 sm:h-6 text-accent mr-2 sm:mr-3"
+                      className="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -74,7 +74,7 @@ const Pricing: React.FC = () => {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                     </svg>
-                    <span className="font-mono text-sm sm:text-base text-gray-700">{feature}</span>
+                    <span className="font-mono text-base text-gray-700">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -82,8 +82,8 @@ const Pricing: React.FC = () => {
                 href={option.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-full block text-center font-mono text-base font-bold py-3 px-6 rounded-lg transition-colors min-h-12 min-w-32 flex items-center justify-center ${
-                  option.featured ? 'bg-brand-red text-white hover:bg-brand-red/90' : 'bg-beige text-accent hover:bg-beige/80'
+                className={`w-full block text-center font-mono text-lg font-bold py-4 px-8 rounded-xl transition-all duration-300 min-h-14 flex items-center justify-center shadow-lg transform hover:-translate-y-1 ${
+                  option.featured ? 'bg-brand-red text-white hover:bg-red-700' : 'bg-black text-white hover:bg-gray-800'
                 }`}
               >
                 Записаться

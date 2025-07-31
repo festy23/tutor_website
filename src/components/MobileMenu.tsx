@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavLink {
   href: string;
@@ -13,26 +14,37 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, isOpen, onClose }) => {
-  if (!isOpen) return null;
-
   return (
-    <div id="mobile-menu" className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-lg z-50 border border-gray-200">
-      <nav className="py-1" role="menu">
-        {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            target={link.isExternal ? '_blank' : undefined}
-            rel={link.isExternal ? 'noopener noreferrer' : undefined}
-            onClick={onClose}
-            className="block px-4 py-2 text-sm font-mono text-gray-700 hover:bg-gray-100"
-            role="menuitem"
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
-    </div>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          className="absolute top-full right-0 mt-3 w-64 bg-white/90 backdrop-blur-lg rounded-xl shadow-2xl z-50 border border-gray-200/70"
+          id="mobile-menu"
+        >
+          <nav className="py-2" role="menu">
+            {navLinks.map((link, index) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target={link.isExternal ? '_blank' : undefined}
+                rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                onClick={onClose}
+                className={`block px-5 py-3 text-lg font-mono text-gray-800 hover:bg-gray-500/10 transition-colors duration-200 ${
+                  index !== navLinks.length - 1 ? 'border-b border-gray-200/80' : ''
+                }`}
+                role="menuitem"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

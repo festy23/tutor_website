@@ -5,6 +5,8 @@ import 'aos/dist/aos.css';
 import Title from './Title';
 import { achievements } from '../data/achievements';
 
+import Labubu from './Labubu';
+
 import gridBackground from '../assets/grid-background.svg';
 
 const About: React.FC = () => {
@@ -13,7 +15,7 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" className="py-20 sm:py-32 overflow-hidden">
+    <section id="about" className="relative py-20 sm:py-32 overflow-hidden">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
           {/* Image Column */}
@@ -26,7 +28,7 @@ const About: React.FC = () => {
               <img
                 src={photo}
                 alt="Коновалов Иван"
-                className="relative w-full h-auto object-cover rounded-lg shadow-lg border-4 border-white"
+                className="relative w-full h-auto object-cover rounded-lg shadow-lg border-4 border-paper"
                 loading="lazy"
                 decoding="async"
                 width="500"
@@ -50,18 +52,19 @@ const About: React.FC = () => {
                 Я помогаю школьникам успешно сдавать ЕГЭ и ОГЭ по информатике, а также готовлю
                 к олимпиадам. Вместе мы превратим сложные задачи в интересные проекты и достигнем ваших целей.
               </p>
+              <Labubu />
             </div>
 
             {/* Tags */}
-            <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4">
+            <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
               {achievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className="bg-black text-white rounded-full px-3 py-2 sm:px-4 sm:py-2 flex items-center justify-center text-center shadow-md transform transition-transform duration-300 hover:scale-110"
+                  className="bg-black text-white rounded-full px-4 py-2 sm:px-5 sm:py-2.5 flex items-center justify-center text-center shadow-md transform transition-transform duration-300 hover:scale-110"
                   data-aos="fade-up"
-                  data-aos-delay={100 + index * 100}
+                  data-aos-delay={100 + index * 50}
                 >
-                  <span className="font-mono text-xs sm:text-sm font-semibold tracking-wider uppercase">{achievement.text}</span>
+                  <span className="font-mono text-xs sm:text-sm font-light tracking-wide uppercase">{achievement.text}</span>
                 </div>
               ))}
             </div>

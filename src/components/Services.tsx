@@ -32,7 +32,7 @@ const Services: React.FC = () => {
         <div className="text-center mb-12 sm:mb-16">
           <Title text="Услуги" className="font-heading text-3xl sm:text-4xl md:text-5xl text-accent" />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {services.map((service, index) => (
             <div
               key={index}
@@ -41,31 +41,31 @@ const Services: React.FC = () => {
               data-aos-delay={`${index * 100}`}
             >
               {service.title === 'Подготовка к ЕГЭ/ОГЭ' && (
-                <div className="absolute -top-4 -right-4 bg-brand-red text-white font-pixel text-xs py-1 px-3 rounded-full transform rotate-12 shadow-lg">
+                <div className="absolute -top-4 -right-4 bg-brand-red text-white font-pixel text-xs py-1.5 px-4 rounded-full transform rotate-12 shadow-lg">
                   Набор 2025
                 </div>
               )}
               {service.studentWork && (
                 <div 
                   onClick={() => handleOpenStudentWorkModal()}
-                  className="absolute -top-4 -left-4 bg-accent text-white font-pixel text-xs py-1 px-3 rounded-full transform -rotate-12 shadow-lg cursor-pointer hover:scale-110 transition-transform duration-200"
+                  className="absolute -top-4 -left-4 bg-accent text-white font-pixel text-xs py-1.5 px-4 rounded-full transform -rotate-12 shadow-lg cursor-pointer hover:scale-110 transition-transform duration-200"
                 >
                   работы учеников
                 </div>
               )}
               <div className="flex-shrink-0 mb-6">
-                <img src={service.icon} alt={service.title} className="w-24 h-24 sm:w-28 sm:h-28 object-contain" loading="lazy" width="96" height="96" />
+                <img src={service.icon} alt={service.title} className="w-28 h-28 sm:w-32 sm:h-32 object-contain" loading="lazy" width="128" height="128" />
               </div>
-              <h3 className="font-mono text-lg sm:text-xl font-bold mb-3 text-accent h-16 flex items-center justify-center">
+              <h3 className="font-mono text-xl sm:text-2xl font-bold mb-4 text-accent h-16 flex items-center justify-center">
                 {service.title}
               </h3>
-              <p className="font-mono text-sm sm:text-base text-gray-600 mb-6 flex-grow">
+              <p className="font-mono text-base text-gray-600 mb-8 flex-grow">
                 {service.description}
               </p>
-              <div className="flex flex-col gap-2 w-full mt-auto">
+              <div className="flex flex-col gap-3 w-full mt-auto">
                 <button
                   onClick={() => handleOpenModal(service)}
-                  className="w-full inline-block bg-accent text-white text-sm font-bold py-3 px-8 rounded-full hover:bg-black transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+                  className="w-full inline-block bg-accent text-white text-base font-bold py-4 px-8 rounded-full hover:bg-black transition-all duration-300 ease-in-out transform hover:-translate-y-1 shadow-lg"
                 >
                   узнать больше
                 </button>
