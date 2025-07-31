@@ -1,5 +1,5 @@
 import React from 'react';
-import labubuImage from '../assets/silver_labubu.png';
+import labubuImage from '../assets/silver_labubu.webp';
 
 const Labubu: React.FC = () => {
   return (

@@ -49,7 +49,7 @@ const Pricing: React.FC = () => {
             >
               {option.featured && (
                 <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                  <span className="px-4 py-1.5 text-sm font-semibold text-white bg-accent rounded-full font-mono shadow-lg">
+                  <span className="px-4 py-1.5 text-xs sm:text-sm font-semibold text-white bg-accent rounded-full font-mono shadow-lg whitespace-nowrap">
                     Лучший выбор!
                   </span>
                 </div>

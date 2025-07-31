@@ -1,5 +1,5 @@
-import silverBooks from '../assets/silver_books.png';
-import silverTalk from '../assets/silver_tallk.png';
+import silverBooks from '../assets/silver_books.webp';
+import silverTalk from '../assets/silver_tallk.webp';
 
 export const pricingOptions = [
   {

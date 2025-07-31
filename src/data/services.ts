@@ -1,9 +1,9 @@
-import hatIcon from '../assets/silver_hat.png';
-import cupIcon from '../assets/silver_cup.png';
-import universityIcon from '../assets/silver_university.png';
-import computerIcon from '../assets/silver_python_logo.png';
-import serverIcon from '../assets/silver_rocket.png';
-import aiIcon from '../assets/silver_robot.png';
+import hatIcon from '../assets/silver_hat.webp';
+import cupIcon from '../assets/silver_cup.webp';
+import universityIcon from '../assets/silver_museum.webp';
+import computerIcon from '../assets/silver_python_logo.webp';
+import serverIcon from '../assets/silver_chart.webp';
+import aiIcon from '../assets/silver_gpt_logotype.webp';
 
 export interface Service {
   icon: string;
