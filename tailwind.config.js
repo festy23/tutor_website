@@ -26,6 +26,8 @@ export default {
           '"Noto Color Emoji"',
         ],
         'mono': ['"Space Mono"', 'monospace'],
+        'podkova': ['"Podkova"', 'serif'],
+        'space-grotesk': ['"Space Grotesk"', 'sans-serif'],
       },
       colors: {
         'beige': '#f5f5dc',
@@ -36,6 +38,7 @@ export default {
         'background': '#f8f8f8',
         'text-primary': '#111111',
         'yellow': '#f0e68c',
+        'dark-bg': '#1e1e1e',
       },
       animation: {
         'blink': 'blink 1s step-end infinite',

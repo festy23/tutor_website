@@ -22,27 +22,38 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, isOpen, onClose }) =>
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="absolute top-full right-0 mt-3 w-full max-w-xs sm:max-w-sm md:w-64 bg-white/90 backdrop-blur-lg rounded-xl shadow-2xl z-50 border border-gray-200/70"
+          className="fixed inset-0 top-16 bg-black/20 backdrop-blur-sm z-[9999]"
           id="mobile-menu"
         >
-          <nav className="py-2" role="menu">
-            {navLinks.map((link, index) => (
-              <a
-                key={link.href}
-                href={link.href}
-                target={link.isExternal ? '_blank' : undefined}
-                rel={link.isExternal ? 'noopener noreferrer' : undefined}
-                onClick={onClose}
-                className={`block px-5 py-3 text-lg font-mono text-gray-800 hover:bg-gray-500/10 transition-colors duration-200 ${
-                  index !== navLinks.length - 1 ? 'border-b border-gray-200/80' : ''
-                }`}
-                role="menuitem"
-                aria-label={link.label}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          <div className="pt-8 px-6">
+            {/* Navigation Bubbles */}
+            <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto">
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  target={link.isExternal ? '_blank' : undefined}
+                  rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                  onClick={onClose}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    type: 'spring', 
+                    stiffness: 300, 
+                    damping: 30, 
+                    delay: index * 0.1 
+                  }}
+                  className="group"
+                >
+                  <div className="glass-card rounded-2xl p-4 text-center hover:scale-105 hover:bg-white/90 transition-all duration-300 cursor-pointer border border-white/30 shadow-xl">
+                    <span className="font-space-grotesk text-sm md:text-base font-medium text-gray-800 group-hover:text-brand-red transition-colors duration-300">
+                      {link.label}
+                    </span>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -18,7 +18,7 @@ const highlightKeywords = (text: string) => {
   const regex = new RegExp(`(${KEYWORDS.join('|')})`, 'gi');
   return text.split(regex).map((part, index) =>
     KEYWORDS.some(keyword => new RegExp(`^${keyword}$`, 'i').test(part)) ? (
-      <span key={index} className="text-accent font-bold">{part}</span>
+      <span key={index} className="text-brand-red font-bold">{part}</span>
     ) : (
       part
     )
@@ -39,26 +39,61 @@ const extractTelegram = (authorString: string) => {
 const ReviewCard: React.FC<ReviewCardProps> = ({ review, onOpenModal }) => {
   return (
     <motion.div
-      className="absolute w-[95%] sm:w-4/5 md:w-3/4 lg:w-full"
-      variants={{
-        enter: (direction: number) => ({ x: direction > 0 ? 100 : -100, opacity: 0, scale: 0.9 }),
-        center: { zIndex: 1, x: 0, opacity: 1, scale: 1 },
-        exit: (direction: number) => ({ zIndex: 0, x: direction < 0 ? 100 : -100, opacity: 0, scale: 0.9 }),
-      }}
-      initial="enter"
-      animate="center"
-      exit="exit"
-      transition={{ x: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.2 } }}
+      className="h-full"
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      <div className="flex flex-col bg-white rounded-xl shadow-lg p-6 sm:p-8 border-2 border-gray-800">
-        <p className="font-mono text-sm sm:text-base text-gray-700 mb-4">{highlightKeywords(truncateToTwoSentences(review.text))}</p>
-        <div className="text-center mt-auto">
-          <button onClick={() => onOpenModal(review)} className="font-mono px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-accent/90 transition-all duration-200 transform hover:scale-105">читать</button>
+      <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl enhanced-shadow h-full flex flex-col grain">
+        {/* Content */}
+        <div className="flex-1 p-6 md:p-8">
+          {/* Review Text */}
+          <div className="mb-6">
+            <p className="font-space-grotesk text-base md:text-lg text-gray-700 leading-relaxed">
+              {highlightKeywords(truncateToTwoSentences(review.text))}
+            </p>
+          </div>
+
+          {/* Tags if available */}
+          {review.tags && review.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-6">
+              {review.tags.slice(0, 3).map((tag, index) => (
+                <span 
+                  key={index}
+                  className="inline-block px-3 py-1 text-xs md:text-sm bg-gray-100 text-gray-600 rounded-full font-space-grotesk"
+                >
+                  #{tag.toLowerCase()}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
-        <footer className="font-mono text-sm font-bold text-accent text-right mt-2 pt-2 border-t">
-          <p>{review.author.split(',')[0].trim()}</p>
-          <p className="text-xs text-gray-500">{extractTelegram(review.author)}</p>
-        </footer>
+
+        {/* Footer */}
+        <div className="border-t border-gray-200 p-6 md:p-8 pt-4 md:pt-6">
+          {/* Author */}
+          <div className="mb-4">
+            <p className="font-space-grotesk text-lg md:text-xl font-bold text-brand-red text-center">
+              {review.author.split(',')[0].trim()}
+            </p>
+          </div>
+
+          {/* Telegram */}
+          <div className="mb-6">
+            <p className="font-space-grotesk text-sm md:text-base text-gray-500 text-center">
+              {extractTelegram(review.author)}
+            </p>
+          </div>
+
+          {/* Read More Button */}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => onOpenModal(review)}
+            className="w-full font-space-grotesk text-base md:text-lg font-bold py-3 md:py-4 px-6 md:px-8 bg-black text-white rounded-xl transition-all duration-300 hover:bg-gray-800 grain enhanced-shadow"
+          >
+            читать полностью
+          </motion.button>
+        </div>
       </div>
     </motion.div>
   );

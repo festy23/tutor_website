@@ -10,7 +10,7 @@ const highlightKeywords = (text: string) => {
   const regex = new RegExp(`(${KEYWORDS.join('|')})`, 'gi');
   return text.split(regex).map((part, index) =>
     KEYWORDS.some(keyword => new RegExp(`^${keyword}$`, 'i').test(part)) ? (
-      <span key={index} className="text-accent font-bold">{part}</span>
+      <span key={index} className="text-brand-red font-bold">{part}</span>
     ) : (
       part
     )
@@ -39,7 +39,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ review, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
         onClick={onClose}
       >
         <motion.div
@@ -47,20 +47,45 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ review, onClose }) => {
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 50 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="relative bg-white rounded-xl shadow-2xl p-6 sm:p-8 border-2 border-gray-800 w-full max-w-lg max-h-[80vh] overflow-y-auto"
+          className="relative bg-white/10 backdrop-blur-sm rounded-2xl enhanced-shadow p-6 md:p-8 border border-white/30 w-full max-w-2xl max-h-[80vh] overflow-y-auto grain"
           onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
         >
-          <button onClick={onClose} className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 z-10">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+          {/* Close Button */}
+          <button 
+            onClick={onClose} 
+            className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors duration-200 z-10 p-2 rounded-full hover:bg-gray-100"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
-          <div className="relative">
-            <span className="absolute -top-4 -left-4 text-7xl text-yellow opacity-50">“</span>
-            <p className="font-mono text-base text-gray-800">{highlightKeywords(review.text)}</p>
+
+          {/* Content */}
+          <div className="relative pt-8">
+            {/* Quote Mark */}
+            <div className="text-center mb-6">
+              <span className="text-6xl md:text-7xl text-brand-red opacity-30 font-podkova">"</span>
+            </div>
+            
+            {/* Review Text */}
+            <div className="mb-8">
+              <p className="font-space-grotesk text-base md:text-lg lg:text-xl text-white leading-relaxed text-center">
+                {highlightKeywords(review.text)}
+              </p>
+            </div>
+
+            {/* Footer */}
+            <div className="border-t-2 border-gray-200 pt-6">
+              <div className="text-center">
+                <p className="font-space-grotesk text-lg md:text-xl font-bold text-brand-red mb-2">
+                  {review.author.split(',')[0].trim()}
+                </p>
+                <p className="font-space-grotesk text-sm md:text-base text-gray-500">
+                  {extractTelegram(review.author)}
+                </p>
+              </div>
+            </div>
           </div>
-          <footer className="font-mono text-sm font-bold text-accent text-right mt-6 pt-4 border-t">
-            <p>{review.author.split(',')[0].trim()}</p>
-            <p className="text-xs text-gray-500">{extractTelegram(review.author)}</p>
-          </footer>
         </motion.div>
       </motion.div>
     </AnimatePresence>

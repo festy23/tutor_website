@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import dinoSprite from '../assets/dino_sprite_game.png';
 
 const DinoGame: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -206,7 +205,7 @@ const DinoGame: React.FC = () => {
     player.sprite.onload = () => {
         gameLoop();
     };
-    player.sprite.src = dinoSprite;
+    player.sprite.src = '../assets/dino_sprite_game.png';
 
     return () => {
       cancelAnimationFrame(animationFrameId);
