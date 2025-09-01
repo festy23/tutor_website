@@ -12,11 +12,8 @@ const AnimatedTitle: React.FC<AnimatedTitleProps> = ({ currentDiscipline, curren
     <div className="text-center mb-12 md:mb-16 lg:mb-20" data-aos="fade-up">
       <h1 className="font-podkova font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-brand-red leading-[1.1] tracking-[-0.02em] mb-2 sm:mb-4">
         <span className="whitespace-nowrap">репетитор по</span>{' '}
-        {/* On mobile stack the discipline on a new line to avoid clipping */}
-        <span className="block sm:inline break-words">
-          <span className="relative inline-block align-baseline">
-            {/* Measuring span to reserve space without clipping */}
-            <span className="invisible select-none">{currentDiscipline}</span>
+        <span className="block sm:inline">
+          <span className="relative inline-block align-baseline h-[1.2em] min-w-[12ch] overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.span
                 key={currentIndex}

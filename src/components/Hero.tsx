@@ -37,8 +37,8 @@ const Hero: React.FC = () => {
         <div className="text-center mb-12 md:mb-16 lg:mb-20" data-aos="fade-up">
           <h1 className="font-podkova font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-brand-red leading-[1.1] tracking-[-0.02em] mb-2 sm:mb-4">
             <span className="whitespace-nowrap">репетитор по</span>{' '}
-            <span className="block sm:inline break-words">
-              <span className="inline-block min-w-[8ch] relative">
+            <span className="block sm:inline">
+              <span className="inline-block relative h-[1.2em] min-w-[12ch] align-baseline">
                 <motion.span
                   key={currentDiscipline}
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -54,8 +54,6 @@ const Hero: React.FC = () => {
                 >
                   {disciplines[currentDiscipline]}
                 </motion.span>
-                {/* Reserve space for word to avoid layout shift */}
-                <span className="invisible select-none">{disciplines[currentDiscipline]}</span>
               </span>
             </span>
           </h1>
