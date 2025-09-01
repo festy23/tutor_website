@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: './', 
+  base: '/', 
   plugins: [react()],
   resolve: {
     alias: {
@@ -14,6 +14,7 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'es2019',
     rollupOptions: {
       output: {
         manualChunks: {

@@ -9,11 +9,13 @@ permissions:
   pages: write         # required for upload & deploy-pages
   id-token: write      # required for OIDC with deploy-pages
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      artifact-name: dist-pages-artifact
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,24 +23,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build project
-        run: npm run build
-
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Build project
+        run: npm run build -- --base=/
+
+      - name: Add SPA fallback (404.html)
+        run: cp dist/index.html dist/404.html
+
       - name: Upload Pages artifact
-        id: upload-pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
-          name: dist-pages-artifact
 
   deploy:
     needs: build
@@ -53,5 +56,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: dist-pages-artifact
