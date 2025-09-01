@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [disciplines.length]);
 
   return (
     <section id="hero" className="relative min-h-screen bg-beige overflow-hidden">
@@ -35,27 +35,31 @@ const Hero: React.FC = () => {
       <div className="relative z-10 container-responsive section-padding">
         {/* Main Title Section */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20" data-aos="fade-up">
-          <h1 className="font-podkova font-bold text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-brand-red leading-[1.1] tracking-[-0.02em] mb-4">
-            репетитор по{' '}
-            <span className="inline-block min-w-[8ch] relative">
-              <motion.span
-                key={currentDiscipline}
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.9 }}
-                transition={{ 
-                  type: 'spring', 
-                  stiffness: 200, 
-                  damping: 20,
-                  duration: 0.6
-                }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                {disciplines[currentDiscipline]}
-              </motion.span>
+          <h1 className="font-podkova font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-brand-red leading-[1.1] tracking-[-0.02em] mb-2 sm:mb-4">
+            <span className="whitespace-nowrap">репетитор по</span>{' '}
+            <span className="block sm:inline break-words">
+              <span className="inline-block min-w-[8ch] relative">
+                <motion.span
+                  key={currentDiscipline}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                  transition={{ 
+                    type: 'spring', 
+                    stiffness: 200, 
+                    damping: 20,
+                    duration: 0.6
+                  }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  {disciplines[currentDiscipline]}
+                </motion.span>
+                {/* Reserve space for word to avoid layout shift */}
+                <span className="invisible select-none">{disciplines[currentDiscipline]}</span>
+              </span>
             </span>
           </h1>
-          <h2 className="font-podkova font-bold text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-brand-red leading-[1.1] tracking-[-0.02em]">
+          <h2 className="font-podkova font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-brand-red leading-[1.1] tracking-[-0.02em]">
             из вшэ
           </h2>
         </div>

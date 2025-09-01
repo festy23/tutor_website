@@ -20,7 +20,7 @@ const Header: React.FC = () => {
       id="sticky-header"
       className={`sticky top-0 z-50 w-full transition-all duration-300 ease-out ${
         isHeaderVisible
-          ? 'glass border-b border-black/10'
+          ? 'backdrop-blur-lg bg-white/35 border-b border-black/10'
           : 'bg-transparent border-b border-transparent'
       } ${
         isHeaderVisible ? 'transform-none' : '-translate-y-full'
@@ -45,7 +45,7 @@ const Header: React.FC = () => {
                 href={link.href}
                 target={link.isExternal ? '_blank' : undefined}
                 rel={link.isExternal ? 'noopener noreferrer' : undefined}
-                className="font-space-grotesk text-sm md:text-base text-gray-700 hover:text-brand-red transition-colors duration-200 font-medium"
+                className="font-space-grotesk text-sm md:text-base font-bold text-black hover:text-brand-red transition-colors duration-200"
               >
                 {link.label}
               </a>

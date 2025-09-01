@@ -17,7 +17,7 @@ const About: React.FC = () => {
         {/* Main Title */}
         <div className="mb-12 md:mb-16 lg:mb-20" data-aos="fade-up">
           <h2 className="font-podkova font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-brand-red leading-[1.1] tracking-[-0.01em] text-center">
-            привет! кратко о себе
+            привет! расскажу о себе
           </h2>
         </div>
 

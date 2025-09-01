@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -23,6 +23,7 @@ const Reviews: React.FC = () => {
 
   const [visibleCount, setVisibleCount] = useState(REVIEWS_PER_PAGE_MOBILE);
   const [isMobile, setIsMobile] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -42,6 +43,14 @@ const Reviews: React.FC = () => {
   // Reset visible count when filter changes
   useEffect(() => {
     setVisibleCount(isMobile ? REVIEWS_PER_PAGE_MOBILE : REVIEWS_PER_PAGE_DESKTOP);
+  }, [activeTag, isMobile]);
+
+  // Auto-scroll stats pill horizontally to reveal long category on mobile
+  useEffect(() => {
+    if (!statsRef.current) return;
+    if (!isMobile) return;
+    // Scroll to the end smoothly to show long tag tail
+    statsRef.current.scrollTo({ left: statsRef.current.scrollWidth, behavior: 'smooth' });
   }, [activeTag, isMobile]);
 
   const handleTagClick = (tag: string | null) => {
@@ -199,20 +208,23 @@ const Reviews: React.FC = () => {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="text-center mt-12 md:mt-16"
           >
-            <div className="inline-flex items-center gap-8 md:gap-12 bg-white/10 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 grain enhanced-shadow">
-              <div className="text-center">
+            <div
+              ref={statsRef}
+              className="inline-flex max-w-full overflow-x-auto items-center gap-6 md:gap-12 bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-full px-4 md:px-8 py-3 md:py-4 grain enhanced-shadow"
+            >
+              <div className="text-center flex-none">
                 <p className="font-space-grotesk text-sm md:text-base text-gray-600">Показано</p>
                 <p className="font-podkova font-bold text-2xl md:text-3xl text-brand-red">{visibleCount}</p>
               </div>
-              <div className="w-px h-8 md:h-12 bg-gray-300"></div>
-              <div className="text-center">
+              <div className="w-px h-8 md:h-12 bg-gray-300 shrink-0"></div>
+              <div className="text-center flex-none">
                 <p className="font-space-grotesk text-sm md:text-base text-gray-600">Всего</p>
                 <p className="font-podkova font-bold text-2xl md:text-3xl text-black">{filteredReviews.length}</p>
               </div>
-              <div className="w-px h-8 md:h-12 bg-gray-300"></div>
-              <div className="text-center">
+              <div className="w-px h-8 md:h-12 bg-gray-300 shrink-0"></div>
+              <div className="text-center flex-none">
                 <p className="font-space-grotesk text-sm md:text-base text-gray-600">Категория</p>
-                <p className="font-podkova font-bold text-lg md:text-xl text-black">
+                <p className="font-podkova font-bold text-base md:text-xl text-black whitespace-nowrap">
                   {activeTag ? `#${activeTag.toLowerCase()}` : 'все'}
                 </p>
               </div>

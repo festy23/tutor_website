@@ -22,7 +22,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, isOpen, onClose }) =>
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="fixed inset-0 top-16 bg-black/20 backdrop-blur-sm z-[9999]"
+          className="fixed inset-0 top-16 bg-black/15 backdrop-blur-sm z-[9999]"
           id="mobile-menu"
         >
           <div className="pt-8 px-6">
@@ -45,8 +45,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, isOpen, onClose }) =>
                   }}
                   className="group"
                 >
-                  <div className="glass-card rounded-2xl p-4 text-center hover:scale-105 hover:bg-white/90 transition-all duration-300 cursor-pointer border border-white/30 shadow-xl">
-                    <span className="font-space-grotesk text-sm md:text-base font-medium text-gray-800 group-hover:text-brand-red transition-colors duration-300">
+                  <div className="rounded-2xl p-4 text-center transition-all duration-300 cursor-pointer border border-white/40 bg-white/30 hover:bg-white/40 shadow-xl backdrop-blur-md">
+                    <span className="font-space-grotesk text-sm md:text-base font-medium text-gray-900 group-hover:text-brand-red transition-colors duration-300">
                       {link.label}
                     </span>
                   </div>
