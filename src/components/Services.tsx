@@ -5,30 +5,36 @@ import 'aos/dist/aos.css';
 import Section from '../shared/ui/Section/Section';
 import Title from '../shared/ui/Title/Title';
 import { ServiceCard } from '../features/services';
-import cupIcon from '../assets/silver_cup.webp';
-import hatIcon from '../assets/silver_hat.webp';
-import pythonIcon from '../assets/silver_python_logo.webp';
+import cupIconWebp from '../assets/silver_cup.webp';
+import cupIconPng from '../assets/silver_cup.png';
+import hatIconWebp from '../assets/silver_hat.webp';
+import hatIconPng from '../assets/silver_hat.png';
+import pythonIconWebp from '../assets/silver_python_logo.webp';
+import pythonIconPng from '../assets/silver_python_logo.png';
 
 const services = [
   {
     id: 2,
     title: 'Подготовкой к ЕГЭ/ОГЭ',
     description: '• разберём абсолютно ВСЕ задачи\n• правильно распределим время\n• без РЕШУ ЕГЭ и пустой зубрежки\n• современные подходы с ai (NotebookLM)',
-    icon: cupIcon,
+    iconWebp: cupIconWebp,
+    iconPng: cupIconPng,
     color: 'bg-beige'
   },
   {
     id: 3,
     title: 'Подготовкой к олимпиадам',
     description: '• изучим C++ и выучим полезные data structures\n• изучим все сложные алгоритмы (BFS, DFS, деревья, графы)\n• на КАЖДОМ IT-собеседовании спрашивают задачи ПОХОЖИЕ на олимпиадные',
-    icon: hatIcon,
+    iconWebp: hatIconWebp,
+    iconPng: hatIconPng,
     color: 'bg-beige'
   },
   {
     id: 1,
     title: 'Изучением программирования',
     description: '• владею Python, C++, Go, C#, Kotlin, Swift\n• пройдём путь с нуля до создания РЕАЛЬНЫХ проектов',
-    icon: pythonIcon,
+    iconWebp: pythonIconWebp,
+    iconPng: pythonIconPng,
     color: 'bg-beige'
   }
 ];

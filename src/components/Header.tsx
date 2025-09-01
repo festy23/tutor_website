@@ -18,12 +18,10 @@ const Header: React.FC = () => {
   return (
     <header
       id="sticky-header"
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ease-out ${
+      className={`sticky top-0 z-50 w-full transition-colors duration-300 ease-out ${
         isHeaderVisible
           ? 'backdrop-blur-lg bg-white/35 border-b border-black/10'
           : 'bg-transparent border-b border-transparent'
-      } ${
-        isHeaderVisible ? 'transform-none' : '-translate-y-full'
       }`}
       role="banner"
     >

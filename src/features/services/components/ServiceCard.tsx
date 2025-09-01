@@ -6,7 +6,9 @@ interface ServiceCardProps {
     id: number;
     title: string;
     description: string;
-    icon: string;
+    iconWebp?: string;
+    iconPng?: string;
+    icon?: string;
     color: string;
   };
   index: number;
@@ -22,13 +24,19 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
         {/* Icon */}
         <div className="lg:col-span-4 flex justify-center lg:justify-start">
           <div className="relative">
-            <img
-              src={service.icon}
-              alt={service.title}
-              className="w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-48 xl:h-48 2xl:w-56 2xl:h-56 object-contain animate-float transition-transform duration-300 group-hover:scale-110"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              {service.iconWebp && <source srcSet={service.iconWebp} type="image/webp" />}
+              {service.iconPng && <source srcSet={service.iconPng} type="image/png" />}
+              <img
+                src={service.iconWebp || service.icon || ''}
+                alt={service.title}
+                className="w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-48 xl:h-48 2xl:w-56 2xl:h-56 object-contain animate-float transition-transform duration-300 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+                width={192}
+                height={192}
+              />
+            </picture>
             {/* Enhanced glow effect */}
             <div className="absolute inset-0 bg-brand-red opacity-20 rounded-full blur-3xl transition-opacity duration-300 group-hover:opacity-30"></div>
           </div>

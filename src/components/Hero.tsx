@@ -77,6 +77,9 @@ const Hero: React.FC = () => {
                   className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 2xl:w-[28rem] 2xl:h-[28rem] object-contain animate-float"
                   loading="eager"
                   fetchPriority="high"
+                  width={384}
+                  height={384}
+                  sizes="(min-width: 1536px) 448px, (min-width: 1280px) 384px, (min-width: 1024px) 320px, (min-width: 768px) 288px, 256px"
                 />
                 {/* Subtle glow effect */}
                 <div className="absolute inset-0 bg-brand-red opacity-10 rounded-full blur-3xl"></div>
@@ -122,9 +125,12 @@ const Hero: React.FC = () => {
                 <img
                   src={profilePic}
                   alt="Profile Picture"
-                  className="w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] 2xl:w-[36rem] 2xl:h-[36rem] object-cover rounded-2xl enhanced-shadow enhanced-border"
+                  className="w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] 2xl:w-[36rem] 2xl:h-[36rem] object-cover rounded-2xl enhanced-shadow enhanced-border transition-opacity duration-300 opacity-100"
                   loading="eager"
                   fetchPriority="high"
+                  width={576}
+                  height={576}
+                  sizes="(min-width: 1536px) 576px, (min-width: 1280px) 512px, (min-width: 1024px) 448px, (min-width: 768px) 384px, 320px"
                 />
                 {/* Subtle border effect */}
                 <div className="absolute inset-0 rounded-2xl border-2 border-black opacity-20"></div>
