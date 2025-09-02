@@ -32,8 +32,20 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Build project
-        run: npm run build -- --base=/tutor_website_v4/
+      - name: Build project (compute base for GitHub Pages)
+        env:
+          REPO: ${{ github.repository }}
+        run: |
+          OWNER=$(echo "$REPO" | cut -d'/' -f1)
+          NAME=$(echo "$REPO" | cut -d'/' -f2)
+          # User/Org pages -> base '/'; Project pages -> '/<repo>/'
+          if [ "$NAME" = "${OWNER}.github.io" ]; then
+            BASE="/"
+          else
+            BASE="/${NAME}/"
+          fi
+          echo "Using base=$BASE"
+          npm run build -- --base="$BASE"
 
       - name: Add SPA fallback (404.html)
         run: cp dist/index.html dist/404.html
