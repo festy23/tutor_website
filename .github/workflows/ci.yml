@@ -33,7 +33,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build project
-        run: npm run build -- --base=/
+        run: npm run build -- --base=/tutor_website_v4/
 
       - name: Add SPA fallback (404.html)
         run: cp dist/index.html dist/404.html
