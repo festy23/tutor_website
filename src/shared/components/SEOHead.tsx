@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import ogProfilePic from '../../assets/profile_pic.webp';
 
 interface SEOHeadProps {
   title?: string;
@@ -12,7 +13,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   title = 'Репетитор по Python и Информатике | Konovalov Ivan',
   description = 'Профессиональная подготовка к ЕГЭ/ОГЭ по информатике и обучение программированию на Python. Первое занятие бесплатно!',
   keywords = ['репетитор', 'python', 'информатика', 'егэ', 'огэ', 'программирование', 'вшэ'],
-  ogImage = '/assets/profile_pic.webp',
+  ogImage = ogProfilePic,
   canonicalUrl = window.location.href
 }) => {
   useEffect(() => {

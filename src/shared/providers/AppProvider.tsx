@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
+import profilePic from '../../assets/profile_pic.webp';
 import { useAppStore } from '../store/appStore';
 import { AppContext } from '../context/AppContext';
 
@@ -21,7 +22,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       new Promise(resolve => {
         const img = new Image();
         img.onload = resolve;
-        img.src = '/src/assets/profile_pic.webp';
+        img.src = profilePic;
       }),
     ]).finally(() => {
       setLoading(false);
